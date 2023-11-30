@@ -95,7 +95,7 @@ export default function Home() {
                       <div className="w-full">
                         <br></br>
                           <p>
-                              I am a passionate software developer that wants to innovate the digital space by designing cutting edge applications. I am a full stack developer that likes to create robust features on both the front and back of applications. However, I do prefer backend development to create lightning fast, scalable, extensible and modular backend systems with organized rest APIs as well as well structured databases. For front end designs I enjoy creating animations and 3D UI components to bring web pages to life. I specialize in making mobile friendly responsive web designs that are functional and easy to use.
+                              I am a passionate software developer that wants to innovate the digital space by designing cutting edge applications. I am a full stack developer that likes to create robust features on both the front and back of applications. However, I do prefer backend development to create lightning fast, scalable, extensible and modular backend systems with organized REST APIs and well structured databases. For front end designs I enjoy creating animations and 3D UI components to bring web pages to life. I specialize in making mobile friendly responsive web designs that are functional and easy to use.
                           </p>
                           <br></br>
                           <br></br>
