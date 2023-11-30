@@ -136,6 +136,22 @@ function SpaceBackground({SharedStateContext}) {
           return null;
         };
 
+        function Button({ image, left, top, link }) {
+            const mesh = useRef();
+            const { size } = useThree();
+            const aspectRatio = size.width / size.height;
+            const texture = useLoader(THREE.TextureLoader, image);
+            useFrame(() => (mesh.current.rotation.y += 0.01));
+            const clicked = ()=>{
+                window.open(link, '_blank');
+            }
+            return (
+                <mesh ref={mesh} onClick={clicked} position={[left * aspectRatio, top * aspectRatio, 0]}>
+                <boxGeometry args={[0.8, 0.8, 0.8]} /> 
+                <meshBasicMaterial attach="material" map={texture} />
+              </mesh>
+            );
+          }
 
 
   
@@ -145,8 +161,11 @@ function SpaceBackground({SharedStateContext}) {
       <Stars color="#FFFF99" style={{color : "#FFFF99"}} />
      
       <Camera/>
-      <Sun image={"lavaplanet.png"}></Sun>
-      <Planet position={[-1.8,2.7,0.0]} image={"lavaplanet.png"}></Planet>
+      <Button image={"linkedin.png"} left={-3.2} top={0.65} link={"https://www.linkedin.com/in/cole-leisen"}></Button>
+      <Button image={"github.png"} left={-3.2} top={0} link={"https://github.com/coleleisen"}></Button>
+
+      <Sun image={"sun.png"}></Sun>
+      <Planet  position={[-1.8,2.7,0.0]} image={"lavaplanet.png"}></Planet>
       <Text
         color="white" // Default color
         anchorX="center" // Horizontal anchor
@@ -157,7 +176,7 @@ function SpaceBackground({SharedStateContext}) {
       >
         About cole
       </Text>
-      <Planet position={[-0.4,2.7,0]} image={"planet.png"}></Planet>
+      <Planet   position={[-0.4,2.7,0]} image={"planet.png"}></Planet>
       <Text
         color="white" // Default color
         anchorX="center" // Horizontal anchor

@@ -18,15 +18,14 @@ export default function Header() {
           </div>
           <div>
             {/* Placeholder for your picture. Make sure to replace with your actual image URL */}
-            <img className="h-32 w-32 rounded-full border-4 border-white" src="/path-to-your-picture.jpg" alt="Cole Leisen" />
+            <img className="h-32 w-32 rounded-full border-4 border-white" src="ratty.jpg" alt="Cole Leisen" />
           </div>
         </div>
   
         <div className="mt-4" style={{zIndex : 10}}>
         <p>Phone: {personalInfo.phone}</p>
           <p>Email: <a href={`mailto:${personalInfo.email}`} className="underline">{personalInfo.email}</a></p>
-          <p>GitHub: <a href={personalInfo.website} target="_blank" rel="noopener noreferrer" className="underline">{personalInfo.website}</a></p>
-          <p >LinkedIn: <a style={{zIndex : 10}} href={personalInfo.linkedIn} target={personalInfo.linkedIn} rel="noopener noreferrer" className="underline">{personalInfo.linkedIn}</a></p>
+         
         </div>
       </header>
     );
