@@ -143,10 +143,11 @@ function SpaceBackground({SharedStateContext}) {
             const texture = useLoader(THREE.TextureLoader, image);
             useFrame(() => (mesh.current.rotation.y += 0.01));
             const clicked = ()=>{
+                console.log('clicked')
                 window.open(link, '_blank');
             }
             return (
-                <mesh ref={mesh} onClick={clicked} position={[left * aspectRatio, top * aspectRatio, 0]}>
+                <mesh onPointerDown={()=>clicked()} ref={mesh}  style={{zIndex : 10}} position={[left * aspectRatio, top * aspectRatio, 0]}>
                 <boxGeometry args={[0.8, 0.8, 0.8]} /> 
                 <meshBasicMaterial attach="material" map={texture} />
               </mesh>
@@ -161,8 +162,8 @@ function SpaceBackground({SharedStateContext}) {
       <Stars color="#FFFF99" style={{color : "#FFFF99"}} />
      
       <Camera/>
-      <Button image={"linkedin.png"} left={-3.2} top={0.65} link={"https://www.linkedin.com/in/cole-leisen"}></Button>
-      <Button image={"github.png"} left={-3.2} top={0} link={"https://github.com/coleleisen"}></Button>
+      <Button image={"linkedin.png"} left={3.15} top={-1.3} link={"https://www.linkedin.com/in/cole-leisen"}></Button>
+      <Button image={"github.png"} left={-3.15} top={-1.3} link={"https://github.com/coleleisen"}></Button>
 
       <Sun image={"sun.png"}></Sun>
       <Planet  position={[-1.8,2.7,0.0]} image={"lavaplanet.png"}></Planet>

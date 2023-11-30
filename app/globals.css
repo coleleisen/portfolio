@@ -47,10 +47,13 @@ body {
 
 .slide-out {
   animation: slideOutRight 0.5s forwards;
+  visibility:hidden;
 }
 
 .slide-in {
   animation: slideInLeft 0.5s forwards;
+  visibility:hidden;
+  
 }
 
 
