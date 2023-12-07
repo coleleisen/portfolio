@@ -169,13 +169,14 @@ function SpaceBackground({SharedStateContext}) {
       <Planet  position={[-1.8,2.7,0.0]} image={"lavaplanet.png"}></Planet>
       <Text
         color="white" // Default color
+        
         anchorX="center" // Horizontal anchor
         anchorY="middle" // Vertical anchor
         fontSize={0.2}
         
         position={[-1.8, 1.9, 0]} // Position in 3D space
       >
-        About cole
+        About Cole
       </Text>
       <Planet   position={[-0.4,2.7,0]} image={"planet.png"}></Planet>
       <Text

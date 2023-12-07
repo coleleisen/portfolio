@@ -5,23 +5,39 @@ import SpaceBackground from './components/spaceBackground'
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import Head from 'next/head';
+import MobileNav from './components/mobilenav';
 
 export default function Home() {
    
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+
+    setIsMobile(window.innerWidth <= 890);
+
+    const handleResize = () => {
+     
+      setIsMobile(window.innerWidth <= 890);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+    }, []);
+
   const SharedStateContext = React.createContext();
   function SharedStateProvider({ children }) {
     const [sharedState, setSharedState] = React.useState(-1.8);
 
       return (
-        <SharedStateContext.Provider value={{ sharedState, setSharedState }}>
+        <SharedStateContext.Provider value={{ sharedState, setSharedState}}>
           {children}
         </SharedStateContext.Provider>
       );
     }
     function Content({ shared }) {
-      const [isMobile, setIsMobile] = React.useState(false);
       const [isSmall, setIsSmall] = React.useState(false);
-
       const [isSmaller, setIsSmaller] = React.useState(false);
       const { sharedState } = useContext(shared);
       const [currentContent, setCurrentContent] = useState(sharedState);
@@ -46,13 +62,11 @@ export default function Home() {
         setIsSmaller(window.innerWidth <= 1550);
         setIsSmall(window.innerWidth <= 1200);
 
-        setIsMobile(window.innerWidth <= 890);
   
         const handleResize = () => {
           console.log(window.innerWidth)
           setIsSmaller(window.innerWidth <= 1550);
           setIsSmall(window.innerWidth <= 1200);
-          setIsMobile(window.innerWidth <= 890);
         };
     
         window.addEventListener('resize', handleResize);
@@ -62,6 +76,7 @@ export default function Home() {
         }, []);
 
       useEffect(() => {
+        
         containerClass = isSmaller ? 'grid grid-cols-3 gap-3' : 'grid grid-cols-5 gap-4';
 
       }, [isSmaller]);
@@ -69,6 +84,8 @@ export default function Home() {
         containerClassFront = isSmall ? 'grid grid-cols-3 gap-3' : 'grid grid-cols-5 gap-4';
 
       }, [isSmall]);
+
+
 
       /*renderThumbVertical={({ style, ...props }) =>
                   <div {...props} style={{ ...style, backgroundColor: 'white', borderRadius: '2px', minHeight : '50%', top : '20%', bottom : '20%' }}/>
@@ -82,8 +99,8 @@ export default function Home() {
         switch (currentContent) {
           case -1.8:
             return(
-              <div className="text-white  rounded-lg shadow-lg text-center" style={{overflowY:'auto', visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
-               
+              <div className="text-white  rounded-lg shadow-lg text-center" style={{ visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
+               <Scrollbars >
 
                 <div className="container mx-auto p-4">
                 <h1 className="text-4xl font-bold">About Cole</h1>
@@ -95,25 +112,30 @@ export default function Home() {
                       <div className="w-full">
                         <br></br>
                           <p>
-                              I am a passionate software developer that wants to innovate the digital space by designing cutting edge applications. I am a full stack developer that likes to create robust features on both the front and back of applications. However, I do prefer backend development to create lightning fast, scalable, extensible and modular backend systems with organized REST APIs and well structured databases. For front end designs I enjoy creating animations and 3D UI components to bring web pages to life. I specialize in making mobile friendly responsive web designs that are functional and easy to use.
+                            
+I am an enthusiastic software developer eager to revolutionize the digital realm through the design of cutting-edge applications. As a full-stack developer, I take pride in crafting robust features for both the frontend and backend of applications. My preference leans towards backend development, where I focus on creating lightning-fast, scalable, extensible, and modular systems. I am adept at organizing REST APIs and structuring databases efficiently. On the frontend, I revel in bringing web pages to life with dynamic animations and immersive 3D UI components. My expertise lies in developing mobile-responsive web designs that are not only functional but also user-friendly and easy to navigate.
                           </p>
-                          <br></br>
                           <br></br>
                           <p>
-                              Besides software projects I like to spend my free time on my hobbies such as hockey, digital music production and video games. I also like to spend time with my friends and family to have a good work life balance.
+                              
+I have a strong passion for automation engineering, utilizing tools such as web scrapers, APIs, and AI to construct systems capable of streamlining multi-step processes into a single, efficient action. My enthusiasm extends to rigorously testing systems for speed and memory efficiency, continuously refining code to achieve optimal performance. I place high importance on maintaining clean, organized, and well-documented code, ensuring it remains comprehensible and accessible for future reading and understanding.
                           </p>
-                          <div className="w-full ">
-                          <img src="ratty.jpg" alt="Cole Leisen" className="rounded-full mx-auto" style={{maxWidth: '200px'}}/>
-                        </div>
+                          
+                          <br></br>
+                          <p>
+                          In addition to my software projects, I enjoy dedicating my free time to hobbies like playing hockey, producing digital music, and playing video games. I also value spending quality time with my friends and family, as it helps me maintain a healthy work-life balance.
+                          </p>
+                          
                       </div>
                   </div>
                 </div>
+                </Scrollbars>
                </div>
             );
           case -0.4:
             return(
-              <div className="text-white rounded-lg shadow-lg text-center" style={{overflowY:'auto',visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
-              <Scrollbars >
+              <div className="text-white rounded-lg shadow-lg text-center" style={{visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
+              <Scrollbars>
                 <div className="container mx-auto p-4">
                   <div className="experience-section">
                     <h1 className="text-4xl font-bold">Experience</h1>   
@@ -153,16 +175,16 @@ export default function Home() {
             );
           case 1:
             return(
-              <div className="text-white rounded-lg shadow-lg text-center" style={{overflowY:'auto',visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
-                <Scrollbars >
+              <div className="text-white rounded-lg shadow-lg text-center" style={{visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
+                <Scrollbars>
 
-                <div className="container mx-auto p-4">
+                <div className="container mx-auto p-4" style={{overflowX : 'hidden'}}>
                   <div className="projects-section">
                   <h1 className="text-4xl font-bold">Projects</h1>
                       <div className="mb-4 mt-4">
                           <h2 className="font-semibold">Soundsphere AI</h2>
-                          <p className="mt-2"><span className="font-semibold">Description:</span> SaaS AI sound generator from text prompt input using Pytorch audio machine learning model. </p>
                           <p className="mt-2"><span className="font-semibold">Tech Stack:</span> NextJS, Python/Pytorch, NodeJS/Express, MySQL, TailwindCSS, Docker, RunPod, Render, Vercel</p>
+                          <p className="mt-2"><span className="font-semibold">Description:</span> SaaS AI sound generator from text prompt input using Pytorch audio machine learning model. </p>
                           <p className="mt-2"><span className="font-semibold">Visit here:</span> <a className="underline" href="https://soundsphere.ai" target='_blank'>https://soundsphere.ai</a> </p>
                       </div>
 
@@ -190,7 +212,7 @@ export default function Home() {
             );
           case 2.4:
             return (
-              <div className="text-white rounded-lg shadow-lg text-center" style={{overflowY:'auto',visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
+              <div className="text-white rounded-lg shadow-lg text-center" style={{overflowY:'auto',visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
                  <Scrollbars>
                 <div className="container mx-auto p-4">
                 <h1 className="text-4xl font-bold">Skills</h1>
@@ -198,7 +220,7 @@ export default function Home() {
                   <div  style={{color : 'dodgerblue'}} className="skills-section frontend">
                     <div className="text-xl font-bold mb-2 underline">Frontend</div>
                     <br></br>
-                      <div className={containerClassFront}>
+                      <div className={isMobile ? 'grid grid-cols-2 gap-2' : containerClassFront}>
                           <div className="skill font-semibold">ReactJS</div>
                           <div className="skill font-semibold">HTML</div>
                           <div className="skill font-semibold">Typescript</div>
@@ -207,7 +229,7 @@ export default function Home() {
                           <div className="skill font-semibold">React Native</div>
                           <div className="skill font-semibold">CSS</div>
                           <div className="skill font-semibold">AngularJS</div>
-                          <div className="skill font-semibold">Tailwind/Material</div>
+                          <div className="skill font-semibold">Tailwind & Material</div>
                           <div className="skill font-semibold">Xcode & Swift</div>
 
                       </div>
@@ -218,7 +240,7 @@ export default function Home() {
                   <div style={{color : 'red'}}  className="skills-section backend">
                       <div  className="text-xl font-bold mb-2 underline">Backend</div>
                       <br></br>
-                        <div className={containerClassFront}>
+                        <div className={isMobile ? 'grid grid-cols-2 gap-2' : containerClassFront}>
                             <div className="skill font-semibold">NodeJS Express</div>
                             <div className="skill font-semibold">Java Spring Boot</div>
                             <div className="skill font-semibold">Golang</div>
@@ -237,17 +259,17 @@ export default function Home() {
                   <div style={{color : 'green'}}  className="skills-section tools">
                       <div className="text-xl font-bold mb-2 underline">Tools & Other</div>
                       <br></br>
-                        <div className={containerClass} >
+                        <div className={isMobile ? 'grid grid-cols-2 gap-2' : containerClass} >
                             <div className="skill font-semibold">Git</div>
                             <div className="skill font-semibold">Docker</div>
-                            <div className="skill font-semibold">AWS/Gcloud/Azure</div>
-                            <div className="skill font-semibold">Linux/MacOS/Windows</div>
-                            <div className="skill font-semibold">JSON/XML/Protobuf</div>
-                            <div className="skill font-semibold">VS Code/IntelliJIDEA</div>
+                            <div className="skill font-semibold">AWS & Gcloud & Azure</div>
+                            <div className="skill font-semibold">Linux & MacOS & Windows</div>
+                            <div className="skill font-semibold">JSON & XML & Protobuf</div>
+                            <div className="skill font-semibold">VS Code & IntelliJIDEA</div>
                             <div className="skill font-semibold">Kubernetes</div>
                             <div className="skill font-semibold">Nginx</div>
                             <div className="skill font-semibold">Wowza</div>
-                            <div className="skill font-semibold">Bash/CMD</div>
+                            <div className="skill font-semibold">Bash & CMD</div>
                             <div className="skill font-semibold">Jenkins</div> 
                             <div className="skill font-semibold">Unit Testing</div> 
                             <div className="skill font-semibold">Websockets</div>
@@ -262,29 +284,11 @@ export default function Home() {
             );
           default:
             return(
-              <div className="text-white  rounded-lg shadow-lg text-center" style={{overflowY:'auto',visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
+              <div className="text-white  rounded-lg shadow-lg text-center" style={{visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
               <Scrollbars>
               <div className="container mx-auto p-4">
               <h1 className="text-4xl font-bold">About Cole</h1>
-                <div className="about-cole flex flex-col md:flex-row items-center">
-                  
-                    <div className="w-full">
-                        <img src="ratty.jpg" alt="Cole Leisen" className="rounded-full mx-auto" style={{maxWidth: '200px'}}/>
-                    </div>
-
-                  
-                    <div className="w-full ">
-                      <br></br>
-                        <p>
-                            I am a passionate software developer that wants to innovate the digital space by designing cutting edge applications. I am a full stack developer that likes to create robust features on both the front and back of applications. However, I do prefer backend development to create lightning fast, scalable, extensible and modular backend systems with organized rest APIs as well as well structured databases. For front end designs I enjoy creating animations and 3D UI components to bring web pages to life. I specialize in making mobile friendly responsive web designs that are functional and easy to use.
-                        </p>
-                        <br></br>
-                        <br></br>
-                        <p>
-                            Besides software projects I like to spend my free time on my hobbies such as hockey, digital music production and video games. I also like to spend time with my friends and family to have a good work life balance.
-                        </p>
-                    </div>
-                </div>
+              
               </div>
               </Scrollbars>
              </div>
@@ -301,6 +305,7 @@ export default function Home() {
       );
     }
 
+
   return (
     <div style={{height : '100vh', overflow : 'hidden'}}>
       <Head>
@@ -310,7 +315,11 @@ export default function Home() {
       </Head>
       <SharedStateProvider>
       <Header></Header>
+      {isMobile ? 
+      <MobileNav SharedStateContext={SharedStateContext}></MobileNav>
+      :
       <SpaceBackground SharedStateContext={SharedStateContext}></SpaceBackground>
+      }
       
       <Content shared={SharedStateContext}></Content>
       </SharedStateProvider>
