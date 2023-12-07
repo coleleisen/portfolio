@@ -222,12 +222,12 @@ I have a strong passion for automation engineering, utilizing tools such as web 
                     <br></br>
                       <div className={isMobile ? 'grid grid-cols-2 gap-2' : containerClassFront}>
                           <div className="skill font-semibold">ReactJS</div>
-                          <div className="skill font-semibold">HTML</div>
+                          <div className="skill font-semibold">HTML & CSS</div>
                           <div className="skill font-semibold">Typescript</div>
                           <div className="skill font-semibold">NextJS</div>
                           <div className="skill font-semibold">Android Studio</div>
                           <div className="skill font-semibold">React Native</div>
-                          <div className="skill font-semibold">CSS</div>
+                          <div className="skill font-semibold">ThreeJS & Canvas</div>
                           <div className="skill font-semibold">AngularJS</div>
                           <div className="skill font-semibold">Tailwind & Material</div>
                           <div className="skill font-semibold">Xcode & Swift</div>
