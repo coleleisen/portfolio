@@ -241,9 +241,9 @@ I have a strong passion for automation engineering, utilizing tools such as web 
                       <div  className="text-xl font-bold mb-2 underline">Backend</div>
                       <br></br>
                         <div className={isMobile ? 'grid grid-cols-2 gap-2' : containerClassFront}>
-                            <div className="skill font-semibold">NodeJS Express</div>
-                            <div className="skill font-semibold">Java Spring Boot</div>
                             <div className="skill font-semibold">Golang</div>
+                            <div className="skill font-semibold">Java Spring Boot</div>
+                            <div className="skill font-semibold">NodeJS Express</div>
                             <div className="skill font-semibold">C# & .NET</div>
                             <div className="skill font-semibold">C++</div>
                             <div className="skill font-semibold">Python</div>
