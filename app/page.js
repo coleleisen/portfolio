@@ -9,15 +9,18 @@ import MobileNav from './components/mobilenav';
 
 export default function Home() {
    
+  const [isClient, setIsClient] = useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
 
   useEffect(() => {
 
-    setIsMobile(window.innerWidth <= 890);
+    setIsMobile(window.innerWidth <= 965);
+    setIsClient(typeof window !== 'undefined');
 
     const handleResize = () => {
-     
-      setIsMobile(window.innerWidth <= 890);
+      setIsClient(typeof window !== 'undefined');
+
+      setIsMobile(window.innerWidth <= 965);
     };
 
     window.addEventListener('resize', handleResize);
@@ -100,36 +103,45 @@ export default function Home() {
           case -1.8:
             return(
               <div className="text-white  rounded-lg shadow-lg text-center" style={{ visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
-               <Scrollbars >
+                {isClient ? 
+                  <Scrollbars >
 
-                <div className="container mx-auto p-4">
-                <h1 className="text-4xl font-bold">About Cole</h1>
-                  <div className="about-cole flex flex-col md:flex-row items-center">
-                    
-                     
-
-                    
-                      <div className="w-full">
-                        <br></br>
-                          <p>
-                            
-I am an enthusiastic software developer eager to revolutionize the digital realm through the design of cutting-edge applications. As a full-stack developer, I take pride in crafting robust features for both the frontend and backend of applications. My preference leans towards backend development, where I focus on creating lightning-fast, scalable, extensible, and modular systems. I am adept at organizing REST APIs and structuring databases efficiently. On the frontend, I revel in bringing web pages to life with dynamic animations and immersive 3D UI components. My expertise lies in developing mobile-responsive web designs that are not only functional but also user-friendly and easy to navigate.
-                          </p>
+                  <div className="container mx-auto p-4">
+                  <h1 className="text-4xl font-bold">About Cole</h1>
+                    <div className="about-cole flex flex-col md:flex-row items-center">
+                      
+                       
+  
+                      
+                        <div className="w-full">
                           <br></br>
-                          <p>
+                            <p>
                               
-I have a strong passion for automation engineering, utilizing tools such as web scrapers, APIs, and AI to construct systems capable of streamlining multi-step processes into a single, efficient action. My enthusiasm extends to rigorously testing systems for speed and memory efficiency, continuously refining code to achieve optimal performance. I place high importance on maintaining clean, organized, and well-documented code, ensuring it remains comprehensible and accessible for future reading and understanding.
-                          </p>
-                          
-                          <br></br>
-                          <p>
-                          In addition to my software projects, I enjoy dedicating my free time to hobbies like playing hockey, producing digital music, and playing video games. I also value spending quality time with my friends and family, as it helps me maintain a healthy work-life balance.
-                          </p>
-                          
-                      </div>
+  I am an enthusiastic software developer eager to revolutionize the digital realm through the design of cutting-edge applications. As a full-stack developer, I take pride in crafting robust features for both the frontend and backend of applications. My preference leans towards backend development, where I focus on creating lightning-fast, scalable, extensible, and modular systems. I am adept at organizing REST APIs and structuring databases efficiently. On the frontend, I revel in bringing web pages to life with dynamic animations and immersive 3D UI components. My expertise lies in developing mobile-responsive web designs that are not only functional but also user-friendly and easy to navigate.
+                            </p>
+                            <br></br>
+                            <p>
+                                
+  I have a strong passion for automation engineering, utilizing tools such as web scrapers, APIs, and AI to construct systems capable of streamlining multi-step processes into a single, efficient action. My enthusiasm extends to rigorously testing systems for speed and memory efficiency, continuously refining code to achieve optimal performance. I place high importance on maintaining clean, organized, and well-documented code, ensuring it remains comprehensible and accessible for future reading and understanding.
+                            </p>
+                            
+                            <br></br>
+                            <p>
+                            In addition to my software projects, I enjoy dedicating my free time to hobbies like playing hockey, producing digital music, and playing video games. I also value spending quality time with my friends and family, as it helps me maintain a healthy work-life balance.
+                            </p>
+                            
+                        </div>
+                    </div>
                   </div>
-                </div>
-                </Scrollbars>
+                  </Scrollbars>
+
+                  :
+
+                  <div>
+                  </div>
+                
+              }
+             
                </div>
             );
           case -0.4:
@@ -212,7 +224,7 @@ I have a strong passion for automation engineering, utilizing tools such as web 
             );
           case 2.4:
             return (
-              <div className="text-white rounded-lg shadow-lg text-center" style={{overflowY:'auto',visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
+              <div className="text-white rounded-lg shadow-lg text-center" style={{visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', minHeight: isMobile ? '63vh' : '70vh', height: isMobile ? '63vh' : '70vh',  width: '65vw', zIndex : 3 }}>
                  <Scrollbars>
                 <div className="container mx-auto p-4">
                 <h1 className="text-4xl font-bold">Skills</h1>
@@ -285,12 +297,7 @@ I have a strong passion for automation engineering, utilizing tools such as web 
           default:
             return(
               <div className="text-white  rounded-lg shadow-lg text-center" style={{visibility: 'visible', borderRadius: '10%', backgroundColor: 'rgb(30,50,50,0.8)', height: '70vh', minHeight: '70vh',  width: '65vw', zIndex : 3 }}>
-              <Scrollbars>
-              <div className="container mx-auto p-4">
-              <h1 className="text-4xl font-bold">About Cole</h1>
               
-              </div>
-              </Scrollbars>
              </div>
             );
           }

@@ -139,8 +139,12 @@ function SpaceBackground({SharedStateContext}) {
         function Button({ image, left, top, link }) {
             const mesh = useRef();
             const { size } = useThree();
+            const [loaded, setLoaded] = React.useState(true);
             const aspectRatio = size.width / size.height;
             const texture = useLoader(THREE.TextureLoader, image);
+            if(!texture){
+                setLoaded(false)
+            }
             useFrame(() => (mesh.current.rotation.y += 0.01));
             const clicked = ()=>{
                 console.log('clicked')
@@ -149,7 +153,7 @@ function SpaceBackground({SharedStateContext}) {
             return (
                 <mesh onPointerDown={()=>clicked()} ref={mesh}  style={{zIndex : 10}} position={[left * aspectRatio, top * aspectRatio, 0]}>
                 <boxGeometry args={[0.8, 0.8, 0.8]} /> 
-                <meshBasicMaterial attach="material" map={texture} />
+                {loaded ? <meshBasicMaterial attach="material" map={texture} /> : <meshBasicMaterial attach="material" />}
               </mesh>
             );
           }
