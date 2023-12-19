@@ -18,7 +18,7 @@ export default function Header() {
           </div>
           <div>
             {/* Placeholder for your picture. Make sure to replace with your actual image URL */}
-            <img className="h-32 w-32 rounded-full border-4 border-white" src="ratty.jpg" alt="Cole Leisen" />
+            <img className="h-32 w-32 rounded-full border-4 border-white" src="cole.jpg" alt="Cole Leisen" />
           </div>
         </div>
   

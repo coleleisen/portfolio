@@ -108,7 +108,7 @@ export default function Home() {
 
                   <div className="container mx-auto p-4">
                   <h1 className="text-4xl font-bold">About Cole</h1>
-                    <div className="about-cole flex flex-col md:flex-row items-center">
+                    <div className=" text-xl leading-8 about-cole flex flex-col md:flex-row items-center">
                       
                        
   
